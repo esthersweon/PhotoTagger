@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_no_current_user!, :only => [:create, :new]
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
     if @user.save
       self.current_user = @user
@@ -15,5 +15,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :password)
   end
 end
