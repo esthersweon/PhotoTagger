@@ -1,2 +1,9 @@
 <div id="content">
 </div>
+
+<script>
+  var CURRENT_USER_ID = <%= current_user.id %>;
+  var USERS = <%= User.all.to_json.html_safe %>;
+
+  $(PT.initialize);
+</script>

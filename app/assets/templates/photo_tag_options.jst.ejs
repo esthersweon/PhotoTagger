@@ -1,0 +1,5 @@
+<ul class="tag-options">
+  <% _(users).each(function (user) { %>
+    <li data-id="<%= user.id %>"><%= user.username %></li>
+  <% }); %>
+</ul>
