@@ -35,3 +35,7 @@ ul.tag-options li {
   height: 20px;
   width: 100px;
 }
+
+ul.tag-options li.tagged {
+  color: blue;
+}

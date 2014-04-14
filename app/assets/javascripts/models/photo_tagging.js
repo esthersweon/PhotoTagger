@@ -71,6 +71,9 @@
           PhotoTagging.trigger("add");
 
           callback(photoTagging);
+        },
+        error: function(){
+          alert("duplicate tagging!")
         }
       });
     }

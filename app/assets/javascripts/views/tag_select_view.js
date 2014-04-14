@@ -4,12 +4,23 @@
   var TagSelectView = PT.TagSelectView = function (photo, event) {
     this.$el = $("<div></div>");
     this.photo = photo;
-
     var imgPos = $(event.currentTarget).position();
+    this.xPos = event.offsetX + imgPos.left - 50
+    this.yPos = event.offsetY + imgPos.top - 50
+    var that = this 
+    
+  
     this.$el.css({
       position: "absolute",
-      left: event.offsetX + imgPos.left - 50,
-      top: event.offsetY + imgPos.top - 50
+      left: that.xPos,
+      top: that.yPos
+    });
+    
+
+    
+    this.$el.on("click", "li", function(event) {
+      that.selectTagOption.bind(that)(event);
+      event.stopPropagation();
     });
   };
 
@@ -26,6 +37,20 @@
       }));
 
       return this;
+    },
+    
+    selectTagOption: function (event) {
+      var that = this;
+      var userId = $(event.currentTarget).attr("data-id");
+      new PT.PhotoTagging({
+        user_id: userId,
+        photo_id: that.photo.get("id"),
+        x_pos: that.xPos,
+        y_pos: that.yPos
+      }).create(function(){
+         $(event.currentTarget).addClass('tagged')
+         that.$el.unbind('click')
+       });
     }
   });
 })(this);
