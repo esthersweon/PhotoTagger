@@ -1,5 +1,5 @@
 (function (root) {
-  var PT = root.PT || (root.PT = {});
+  var PT = root.PT = (root.PT || {});
 
   var Photo = PT.Photo = function (data) {
     this.attributes = _.extend({}, data);
